@@ -1,48 +1,59 @@
+var num = 1;
+var palett_num = 1;
+
 module.exports = {
     parcelTreatment: (treat) => {
         let itemsList = treat.items;
+        /*********** Sort Orders by Date ? *************
+        treat.orders.sort(function(a,b) {
+            return new Date(b.date) - new Date(a.date);
+        });
+        /*********************************************/
         if (treat && typeof treat !== 'undefined') {
             treat.orders.forEach(function (order) {
                 treatment(order, itemsList);
+                //console.log("----- New Order " + num + " ----");
+                num++;
             });
         }
     }
 };
 
-/* Création du colis */
 treatment = (order, itemsList) => {
     let id = order.id;
-    let date = order.date;
     let items = order.items;
-    let weigthParcel = [];
     const parcel = [];
 
     for (let i = 0; i < items.length; i++) {
         if (items[i] && typeof items[i].quantity !== 'undefined') {
             var orderParcel = findWeigth(items[i], itemsList);
             if(orderParcel.divideTo != null){
-                console.log(orderParcel.totalWeight, orderParcel.unitWeight);
-                let divideParcel = orderParcel.totalWeight - orderParcel.weight * orderParcel.divideTo;
-                console.log(divideParcel);
-                for(let i = 0;i < orderParcel.divideTo; i++){
-                    weigthParcel.push(divideParcel);
-                    let parcelToPack = new Object({
+                let divideItem = orderParcel.totalWeight - orderParcel.weight * orderParcel.divideTo;
+                let itemDivided =  divideItem.toFixed(1);
+                let quantity = orderParcel.quantity;
+
+                //console.log(orderParcel.totalWeight, Number(orderParcel.weight));
+                //console.log( divideItem.toFixed(1));
+
+                for(let i = 0;i < orderParcel.divideTo + 1; i++){
+                    if(Number(orderParcel.weight) == itemDivided){
+                        quantity = 1;
+                    }
+                    let parcelToStack = new Object({
                         "parcel": {
                             order_id: id,
                             items: [{
                                 item_id: orderParcel.id,
-                                quantity: orderParcel.quantity,
+                                quantity: quantity,
                             }],
                             unitWeight: orderParcel.weight,
-                            weight: divideParcel,
-                            tracking_id: null,
-                            palette_number: null,
+                            weight: itemDivided,
                         }
                     });
-                    parcel.push(parcelToPack);
+                    parcel.push(parcelToStack);
                 }
             } else {
-                let parcelToPack = new Object({
+                let parcelToStack = new Object({
                     "parcel": {
                         order_id: id,
                         items: [{
@@ -51,19 +62,51 @@ treatment = (order, itemsList) => {
                         }],
                         unitWeight: orderParcel.weight,
                         weight: orderParcel.totalWeight,
-                        tracking_id: null,
-                        palette_number: null,
                     }
                 });
-                parcel.push(parcelToPack);
+                parcel.push(parcelToStack);
             }
+
         }
     }
     var parcelStack = stackParcel(parcel);
 
 };
 
-/* Trouve le poids et indique la division a suivre return un Object */
+/* Function: get parcel object and concat to each other */
+/* try to reech the good weight (30) */
+stackParcel = (parcel) => {
+    let detailledPackage = [];
+    function logArrayElements(element, index) {
+        //console.log("[" + index + "] = Weight: " + element.parcel.weight + ", Quantity: " + element.parcel.items[0].quantity + ", UnitWeight: " + element.parcel.unitWeight + ", itemId: " + element.parcel.items[0].item_id + ", orderId: " + element.parcel.order_id);
+        detailledPackage = [{
+            index: index,
+            orderNumber: num,
+            orderId: element.parcel.order_id,
+            weight: Number(element.parcel.weight),
+            quantity: element.parcel.items[0].quantity,
+            unitWeight: Number(element.parcel.unitWeight),
+            itemId: element.parcel.items[0].item_id,
+        }];
+        console.log(detailledPackage);
+    }
+    parcel.forEach(logArrayElements);
+    let parcelToPack = new Object({
+        "parcel": {
+            order_id: null,
+            items: [{
+                item_id: null,
+                quantity: null,
+            }],
+            unitWeight: null,
+            weight: null,
+            tracking_id: null,
+            palette_number: null,
+        }
+    });
+    //throw new Error("my error message");
+};
+
 findWeigth = (itemOrder, itemsList) => {
     if(itemOrder && typeof itemOrder !== 'undefined' || itemOrder != null){
         for (let i = 0; i < itemsList.length; i++) {
@@ -85,23 +128,11 @@ findWeigth = (itemOrder, itemsList) => {
                     id: itemOrder.item_id,
                     quantity: itemOrder.quantity,
                     weight: itemsList[i].weight,
-                    totalWeight: total,
+                    totalWeight: total.toFixed(1),
                     divideTo: divide,
                 });
                 return calcul;
             }
         }
     }
-};
-
-/* Function: get parcel object and concat to each other */
-/* try to reech the good weight (30) */
-stackParcel = (parcel) => {
-    function logArrayElements(element, index) {
-        //console.log(parcel.items[0]);
-        console.log("[" + index + "] = poids: " + element.parcel.weight + ", quantity: " + element.parcel.items[0].quantity + ", UnitWeight: " + element.parcel.unitWeight);
-    }
-    parcel.forEach(logArrayElements);
-
-    throw new Error("my error message");
 };

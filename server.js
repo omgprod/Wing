@@ -22,7 +22,7 @@ app.enable('trust proxy');
 /* Server Main */
 app.get('/', (req, res) => {
     parcelController.parcelTreatment(fileToTreat);
-    res.status(200).sendFile(path.join(__dirname+'/view/index.html'));
+    res.status(200).sendFile(path.join(__dirname+'/View/index.html'));
 });
 
 app.listen(port, ip, () => {
