@@ -1,6 +1,6 @@
 /* Require the JSON files & functions files */
-const items = require('./items');
-const orders = require('./orders');
+const items = require('./JSON/items');
+const orders = require('./JSON/orders');
 const fileToTreat = Object.assign(items, orders);
 const parcelController = require('./Controller/parcelController');
 
