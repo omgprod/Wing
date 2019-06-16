@@ -22,12 +22,13 @@ app.enable('trust proxy');
 /* Server Main */
 app.get('/', (req, res) => {
     let parcel = parcelController.parcelTreatment(fileToTreat);
-    //console.log('parcel ' + JSON.stringify(parcel));
     res.status(200).render('index', {
         parcel: parcel,
+        user: "Babito"
     });
 });
 
+/* Server deploy on */
 app.listen(port, ip, () => {
-    console.log("Server is launch on http://" + ip + ":" + port);
+    console.log("Server is deploy on http://" + ip + ":" + port);
 });

@@ -11,13 +11,15 @@
 <style>
     * {
         box-sizing: inherit;
-        background-repeat: no-repeat; }
+        background-repeat: no-repeat;
+    }
 
     html,
     body {
         padding: 0;
         margin: 0;
-        font-family: "avenir next", avenir, -apple-system, BlinkMacSystemFont, "helvetica neue", helvetica, ubuntu, roboto, noto, "segoe ui", arial, sans-serif; }
+        font-family: "avenir next", avenir, -apple-system, BlinkMacSystemFont, "helvetica neue", helvetica, ubuntu, roboto, noto, "segoe ui", arial, sans-serif;
+    }
 
     .background {
         position: relative;
@@ -26,16 +28,29 @@
         flex: 1 0 auto;
         width: 100%;
         display: flex;
-        flex-direction: column; }
+        flex-direction: column;
+    }
+
+    tbody {
+        text-align: center;
+        height: 600px;
+        display: inline-block;
+        width: 100%;
+        overflow: auto;
+    }
 
     .page-title {
         z-index: 0;
         max-width: 580px;
         text-align: center;
         color: white;
-        margin: 3rem auto 1rem; }
+        margin: 3rem auto 1rem;
+    }
+
     .page-title .company-link {
-        text-decoration: none; }
+        text-decoration: none;
+    }
+
     .page-title .company-link h1 {
         font-size: inherit;
         line-height: inherit;
@@ -46,14 +61,17 @@
         color: #c0e4ed;
         letter-spacing: -1px;
         font-style: italic;
-        font-weight: bold; }
+        font-weight: bold;
+    }
+
     .page-title h1 {
         letter-spacing: -1px;
         text-shadow: 1px 2px 10px rgba(0, 0, 0, 0.1);
         font-weight: bold;
         margin: 0;
         margin-bottom: 36px;
-        font-size: 72px; }
+        font-size: 72px;
+    }
 
     .card {
         position: relative;
@@ -62,7 +80,9 @@
         max-width: 660px;
         min-height: 440px;
         width: 80%;
-        margin: auto; }
+        margin: auto;
+    }
+
     .card:before {
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
         position: absolute;
@@ -73,7 +93,9 @@
         width: 100%;
         top: 0;
         left: 0;
-        z-index: 0; }
+        z-index: 0;
+    }
+
     .card::after {
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
         position: absolute;
@@ -88,21 +110,28 @@
         top: 0;
         left: 0;
         z-index: -1;
-        opacity: 0.9; }
+        opacity: 0.9;
+    }
+
     .card .text-wrap {
         position: relative;
         z-index: 1;
-        text-align: left; }
+        text-align: left;
+    }
+
     .card .text-wrap p {
         font-size: 20px;
         line-height: 1.8;
-        z-index: 2; }
+        z-index: 2;
+    }
 
     footer {
         display: flex;
         flex-direction: row wrap;
         justify-content: center;
-        padding: 60px 10px; }
+        padding: 60px 10px;
+    }
+
     footer a {
         font-size: 20px;
         margin-left: 27px;
@@ -110,9 +139,12 @@
         margin-bottom: 0px;
         width: auto;
         color: #fff;
-        text-decoration: none; }
+        text-decoration: none;
+    }
+
     footer a:hover {
-        text-decoration: none; }
+        text-decoration: none;
+    }
 </style>
 <div class="background">
     <div class="page-title">
@@ -120,18 +152,40 @@
             <h1>Wing</h1>
         </a>
         <h1>Parcel Ready to Go.</h1>
+        <h3>Welcome Back <%= user %></h3>
     </div>
     <section class="card">
         <div class="text-wrap">
-            <p><%=  %></p>
-            <ul>
+            <p><%=     %></p>
+            <table style="width:100%">
+                    <tr>
+                        <th>Order #</th>
+                        <th>Order Id</th>
+                        <th>Index</th>
+                        <th>Weight</th>
+                        <th>Quantity</th>
+                        <th>Unit Weight</th>
 
-            </ul>
+                    </tr>
+                <% parcel.forEach(function(parcel) { %>
+                    <tr>
+                        <td><%= parcel.orderNumber %></td>
+                        <td><%= parcel.orderId %></td>
+                        <td><%= parcel.index %></td>
+                        <td><%= parcel.weight %></td>
+                        <td><%= parcel.quantity %></td>
+                        <td><%= parcel.unitWeight %></td>
+
+
+                    </tr>
+                <% }); %>
+            </table>
         </div>
     </section>
     <footer>
         <a href="#">Created by OMGPROD with Luv!</a>
         <a href="#">@ComeVisit!</a>
     </footer>
-</div></body>
+</div>
+</body>
 </html>

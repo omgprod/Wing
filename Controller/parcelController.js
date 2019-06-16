@@ -5,11 +5,13 @@ var orderToPack = [];
 module.exports = {
     parcelTreatment: (treat) => {
         let itemsList = treat.items;
-        /*********** Sort Orders by Date ? *************
+
+        /*********** Sort Orders by Date *************
         treat.orders.sort(function(a,b) {
             return new Date(b.date) - new Date(a.date);
         });
         /*********************************************/
+
         if (treat && typeof treat !== 'undefined') {
             treat.orders.forEach(function (order) {
                 var treatOrders = treatment(order, itemsList);
@@ -35,10 +37,8 @@ treatment = (order, itemsList) => {
                 let divideItem = orderParcel.totalWeight - orderParcel.weight * orderParcel.divideTo;
                 let itemDivided =  divideItem.toFixed(1);
                 let quantity = orderParcel.quantity;
-
                 //console.log(orderParcel.totalWeight, Number(orderParcel.weight));
                 //console.log( divideItem.toFixed(1));
-
                 for(let i = 0;i < orderParcel.divideTo + 1; i++){
                     if(Number(orderParcel.weight) == itemDivided){
                         quantity = 1;
@@ -77,13 +77,11 @@ treatment = (order, itemsList) => {
 
 };
 
-/* Function: get parcel object and concat to each other */
-/* try to reech the good weight (30) */
 stackParcel = (parcel) => {
     let detailledPackage = [];
     function logArrayElements(element, index) {
         //console.log("[" + index + "] = Weight: " + element.parcel.weight + ", Quantity: " + element.parcel.items[0].quantity + ", UnitWeight: " + element.parcel.unitWeight + ", itemId: " + element.parcel.items[0].item_id + ", orderId: " + element.parcel.order_id);
-        detailledPackage = [{
+        detailledPackage = {
             index: index,
             orderNumber: num,
             orderId: element.parcel.order_id,
@@ -91,15 +89,18 @@ stackParcel = (parcel) => {
             quantity: element.parcel.items[0].quantity,
             unitWeight: Number(element.parcel.unitWeight),
             itemId: element.parcel.items[0].item_id,
-        }];
+        };
         //console.log(detailledPackage);
         orderToPack.push(detailledPackage);
-        console.log(orderToPack);
+        //console.log(orderToPack);
     }
     parcel.forEach(logArrayElements);
-    //console.log(orderToPack);
+    for(let i =  0; i < detailledPackage.length; i++){
+        console.log(i);
+    }
 
-    return orderToPack;
+
+    return detailledPackage;
 
     let parcelToPack = new Object({
         "parcel": {
@@ -114,7 +115,7 @@ stackParcel = (parcel) => {
             palette_number: null,
         }
     });
-    //throw new Error("bite a cul");
+    //throw new Error("Pikachu is dead");
 };
 
 findWeigth = (itemOrder, itemsList) => {
