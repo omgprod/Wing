@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bf6b74e8-e76d-47b0-8aed-7e1b3da6a6da" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/assets/styles/css/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Controller/parcelController.js" beforeDir="false" afterPath="$PROJECT_DIR$/Controller/parcelController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Model/doParcel.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/styles/scss/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/styles/scss/style.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/styles/scss/style.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/assets/styles/scss/style.css.map" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/view/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/view/index.html" afterDir="false" />
@@ -38,8 +35,8 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/Controller/parcelController.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="432">
-                  <caret line="18" column="5" lean-forward="true" selection-start-line="18" selection-start-column="5" selection-end-line="18" selection-end-column="5" />
+                <state relative-caret-position="-1628">
+                  <caret line="19" column="2" lean-forward="true" selection-start-line="19" selection-start-column="2" selection-end-line="19" selection-end-column="2" />
                 </state>
               </provider>
             </entry>
@@ -99,7 +96,7 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="503" />
     <option name="y" value="-22" />
     <option name="width" value="1792" />
@@ -228,12 +225,12 @@
       <workItem from="1560626903601" duration="7865000" />
       <workItem from="1560658169455" duration="3522000" />
       <workItem from="1560692585530" duration="8558000" />
-      <workItem from="1560703088562" duration="5063000" />
+      <workItem from="1560703088562" duration="5234000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="38623000" />
+    <option name="totallyTimeSpent" value="38794000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="2576" height="1096" extended-state="6" />
@@ -339,8 +336,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Controller/parcelController.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="432">
-          <caret line="18" column="5" lean-forward="true" selection-start-line="18" selection-start-column="5" selection-end-line="18" selection-end-column="5" />
+        <state relative-caret-position="-1628">
+          <caret line="19" column="2" lean-forward="true" selection-start-line="19" selection-start-column="2" selection-end-line="19" selection-end-column="2" />
         </state>
       </provider>
     </entry>
