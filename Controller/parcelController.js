@@ -1,5 +1,6 @@
 var num = 1;
 var palett_num = 1;
+var orderToPack = [];
 
 module.exports = {
     parcelTreatment: (treat) => {
@@ -11,10 +12,13 @@ module.exports = {
         /*********************************************/
         if (treat && typeof treat !== 'undefined') {
             treat.orders.forEach(function (order) {
-                treatment(order, itemsList);
+                var treatOrders = treatment(order, itemsList);
                 //console.log("----- New Order " + num + " ----");
                 num++;
             });
+            return orderToPack
+        } else {
+            throw new Error('Error: No Treatment Orders find.');
         }
     }
 };
@@ -88,9 +92,15 @@ stackParcel = (parcel) => {
             unitWeight: Number(element.parcel.unitWeight),
             itemId: element.parcel.items[0].item_id,
         }];
-        console.log(detailledPackage);
+        //console.log(detailledPackage);
+        orderToPack.push(detailledPackage);
+        console.log(orderToPack);
     }
     parcel.forEach(logArrayElements);
+    //console.log(orderToPack);
+
+    return orderToPack;
+
     let parcelToPack = new Object({
         "parcel": {
             order_id: null,
@@ -104,7 +114,7 @@ stackParcel = (parcel) => {
             palette_number: null,
         }
     });
-    //throw new Error("my error message");
+    //throw new Error("bite a cul");
 };
 
 findWeigth = (itemOrder, itemsList) => {

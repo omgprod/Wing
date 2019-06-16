@@ -12,17 +12,20 @@ const cors = require('cors');
 const express = require("express");
 const bodyParser = require("body-parser");
 const app = express();
-const path = require('path');
 
 app.use(cors());
+app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 app.enable('trust proxy');
 
 /* Server Main */
 app.get('/', (req, res) => {
-    parcelController.parcelTreatment(fileToTreat);
-    res.status(200).sendFile(path.join(__dirname+'/View/index.html'));
+    let parcel = parcelController.parcelTreatment(fileToTreat);
+    //console.log('parcel ' + JSON.stringify(parcel));
+    res.status(200).render('index', {
+        parcel: parcel,
+    });
 });
 
 app.listen(port, ip, () => {
