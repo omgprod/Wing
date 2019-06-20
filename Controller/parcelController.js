@@ -10,12 +10,12 @@ module.exports = {
         let orderToPack = [];
         if (treat && typeof treat !== 'undefined') {
             treat.orders.forEach(function (order) {
-                let orderToPack = treatment(order, itemsList);
-                ordersToCalcul.push(orderToPack);
+                let calculedWeight = treatment(order, itemsList);
+                ordersToCalcul.push(calculedWeight);
                 num++;
             });
             //console.log(ordersToCalcul);
-            AddStack(ordersToCalcul);
+            StackAndPack(ordersToCalcul);
             return orderToPack
         } else {
             //throw new Error("Pikachu is not dead yet");
@@ -33,8 +33,8 @@ treatment = (order, itemsList) => {
         if (items[i] && typeof items[i].quantity !== 'undefined') {
             items.map(function (key) {
                 //console.log('key: ' + JSON.stringify(key) + ' ' + JSON.stringify(val));
-                let orderParcel = findWeigth(key, itemsList, id, order);
-                arr.push(orderParcel);
+                let orderToParcel = DivideWeight(key, itemsList, id, order);
+                arr.push(orderToParcel);
             });
             return arr;
         } else {
@@ -47,7 +47,7 @@ treatment = (order, itemsList) => {
 * Fonction qui récupère le poids de l'objet unitaire, le poid total, divise
 * la quantités d'objet si le poid excède 30kg
 */
-findWeigth = (itemOrder, itemsList, id) => {
+DivideWeight = (itemOrder, itemsList, id) => {
     let parcel = [];
     if (itemOrder && typeof itemOrder !== 'undefined' || itemOrder != null) {
         for (let i = 0; i < itemsList.length; i++) {
@@ -142,10 +142,11 @@ findWeigth = (itemOrder, itemsList, id) => {
 };
 
 
-AddStack = (order) => {
+StackAndPack = (order) => {
     let lenght = order.length;
     let parcelNumber = 1;
     let paletteNumber = 1;
+    let newItems = [{}];
 
     /* Premier Array = Commande, Second Array = Articles (divisé ou non)*/
     //console.log(JSON.stringify(order));
@@ -153,6 +154,8 @@ AddStack = (order) => {
     //console.log(JSON.stringify(order[0][1][0]));
     //console.log(JSON.stringify(order[0][2][0]));
     //throw new Error("Calcul");
+
+
     console.log('Nombres de commandes: ' + lenght);
     for (let i = 0; i < lenght; i++) {
         let articleLenght = order[i].length;
@@ -166,41 +169,40 @@ AddStack = (order) => {
                 let orderWeight = order[i][j][0].weight;
                 let next = j + 1;
                 let tryToAdd = order[i][next][0].weight;
+                let memArticle = 0;
                 if(j === 0 ){
-                    let parcelToPack = new Object({
-                        order_id: order[i][j][0].order_id,
-                        items: [{
-                            item_id: order[i][j][0].item_id,
-                            quantity: order[i][j][0].quantity,
-                        }],
-                        unitWeight: order[i][j][0].unitWeight,
-                        weight: order[i][j][0].weight,
-                        tracking_id: null,
-                        palette_number: paletteNumber,
-                    });
-                    parcelNumber++;
+                    console.log('first');
                 }
                 while (orderWeight < 30) {
+                    if(j === articleLenght){ break; }
+                    console.log(i, j);
+                    //console.log(order[i][j][0]);
+                    console.log(orderWeight);
                     let addWeight = orderWeight + tryToAdd;
-                    console.log(next, addWeight);
+                    console.log(next, addWeight, memArticle);
                     next += 1;
                     if (addWeight >= 30 || typeof tryToAdd === 'undefined') {
+                        next -= 1;
+                        let removeWeight = orderWeight - tryToAdd;
                         let parcelToPack = new Object({
                             order_id: order[i][j][0].order_id,
-                            items: [{
-                                item_id: order[i][j][0].item_id,
-                                quantity: order[i][j][0].quantity,
-                            }],
-                            unitWeight: order[i][j][0].unitWeight,
-                            weight: order[i][j][0].weight,
+                            newItems,
+                            weight: Number(removeWeight).toFixed(1),
                             tracking_id: null,
                             palette_number: paletteNumber,
                         });
                         parcelNumber++;
+                        console.log(parcelToPack);
                         break
                     }else {
-                        tryToAdd = order[i][next][0].weight;
-                        console.log('poids qui vas être ajouté: ' + order[i][next][0].weight);
+                        orderWeight = addWeight;
+                        console.log("next" + order[i][next][0]);
+                        if(typeof order[i][next][0] === 'undefined'){
+                            break;
+                        }else{
+                            tryToAdd = order[i][next][0].weight;
+                        }
+                        console.log('poids qui vas être ajouté: ' + order[i][next][0].weight + ', le poids sera de = ' + orderWeight);
                     }
                 }
             } else {
@@ -209,11 +211,22 @@ AddStack = (order) => {
                 if (parcelNumber === 15) {
                     paletteNumber++;
                 }
-                // Make a request for a user with a given ID
                 axios.get('https://helloacm.com/api/random/?n=15')
                     .then(function (response) {
                         // handle success
-                        console.log(response);
+                        console.log('response ' + response);
+                        let parcelToPack = new Object({
+                            order_id: order[i][j][0].order_id,
+                            items: [{
+                                item_id: order[i][j][0].item_id,
+                                quantity: order[i][j][0].quantity,
+                            }],
+                            weight: order[i][j][0].weight,
+                            tracking_id: null,
+                            palette_number: paletteNumber,
+                        });
+                        parcelNumber++;
+                        return parcelToPack;
                     })
                     .catch(function (error) {
                         // handle error
@@ -222,52 +235,7 @@ AddStack = (order) => {
                     .finally(function () {
                         // always executed
                     });
-                let parcelToPack = new Object({
-                    order_id: order[i][j][0].order_id,
-                    items: [{
-                        item_id: order[i][j][0].item_id,
-                        quantity: order[i][j][0].quantity,
-                    }],
-                    unitWeight: order[i][j][0].unitWeight,
-                    weight: order[i][j][0].weight,
-                    tracking_id: null,
-                    palette_number: paletteNumber,
-                });
-                parcelNumber++;
             }
         }
-
-
-        /*if(order[i].length > 1){
-            // map
-        }
-        //console.log(order[0]);
-        order[i].map(function (value, key) {
-            console.log('key: ' + JSON.stringify(key) + ' ' + JSON.stringify(value[i].weight) + JSON.stringify(value));
-            console.log(JSON.stringify('lenght: '+ value.length));
-            if(value[i].weight < 30){
-                console.log('smallerThan30');
-            }
-        });
-
-
-            for(let i = 0; i < value.length; i++){
-                console.log('value[i]: ' + JSON.stringify(value[i]));
-                console.log('i: ' + i);
-                let next = i += 1;
-                console.log('next: ' +next);
-            }
-
-            value.forEach(function (element, key) {
-                //console.log(key, element);
-            });
-
-
-            if (value[i] === value[0]) {
-                throw new Error("Calcul");
-            }
-
-
-         */
     }
 };

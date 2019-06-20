@@ -4,8 +4,6 @@
     <list default="true" id="bf6b74e8-e76d-47b0-8aed-7e1b3da6a6da" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Controller/parcelController.js" beforeDir="false" afterPath="$PROJECT_DIR$/Controller/parcelController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -35,8 +33,8 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/Controller/parcelController.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="839">
-                  <caret line="214" column="41" lean-forward="true" selection-start-line="214" selection-start-column="41" selection-end-line="214" selection-end-column="41" />
+                <state relative-caret-position="384">
+                  <caret line="241" lean-forward="true" selection-start-line="241" selection-end-line="241" />
                 </state>
               </provider>
             </entry>
@@ -53,7 +51,7 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/JSON/orders.json">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="553">
+                <state relative-caret-position="816">
                   <caret line="34" column="56" selection-start-line="34" selection-start-column="56" selection-end-line="34" selection-end-column="56" />
                 </state>
               </provider>
@@ -111,7 +109,7 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="288" />
     <option name="y" value="-19" />
     <option name="width" value="1792" />
@@ -213,15 +211,16 @@
       <workItem from="1560658169455" duration="3522000" />
       <workItem from="1560692585530" duration="8558000" />
       <workItem from="1560703088562" duration="26266000" />
-      <workItem from="1560954951055" duration="27618000" />
+      <workItem from="1560954951055" duration="32375000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="87444000" />
+    <option name="totallyTimeSpent" value="92201000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="2576" height="1096" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4994664" visible="true" weight="0.14626391" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -315,7 +314,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/JSON/orders.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="553">
+        <state relative-caret-position="816">
           <caret line="34" column="56" selection-start-line="34" selection-start-column="56" selection-end-line="34" selection-end-column="56" />
         </state>
       </provider>
@@ -332,8 +331,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Controller/parcelController.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="839">
-          <caret line="214" column="41" lean-forward="true" selection-start-line="214" selection-start-column="41" selection-end-line="214" selection-end-column="41" />
+        <state relative-caret-position="384">
+          <caret line="241" lean-forward="true" selection-start-line="241" selection-end-line="241" />
         </state>
       </provider>
     </entry>
