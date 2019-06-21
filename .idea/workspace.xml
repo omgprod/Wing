@@ -3,8 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="bf6b74e8-e76d-47b0-8aed-7e1b3da6a6da" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/Controller/parcelController.js" beforeDir="false" afterPath="$PROJECT_DIR$/Controller/parcelController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/server.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/index.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/index.ejs" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -34,8 +32,8 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/Controller/parcelController.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="797">
-                  <caret line="221" column="5" lean-forward="true" selection-start-line="221" selection-start-column="5" selection-end-line="221" selection-end-column="5" />
+                <state relative-caret-position="-729">
+                  <caret line="169" column="13" selection-start-line="169" selection-start-column="13" selection-end-line="169" selection-end-column="13" />
                 </state>
               </provider>
             </entry>
@@ -212,12 +210,12 @@
       <workItem from="1560658169455" duration="3522000" />
       <workItem from="1560692585530" duration="8558000" />
       <workItem from="1560703088562" duration="26266000" />
-      <workItem from="1560954951055" duration="49717000" />
+      <workItem from="1560954951055" duration="50122000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="109543000" />
+    <option name="totallyTimeSpent" value="109948000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="2576" height="1096" extended-state="6" />
@@ -332,8 +330,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Controller/parcelController.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="797">
-          <caret line="221" column="5" lean-forward="true" selection-start-line="221" selection-start-column="5" selection-end-line="221" selection-end-column="5" />
+        <state relative-caret-position="-729">
+          <caret line="169" column="13" selection-start-line="169" selection-start-column="13" selection-end-line="169" selection-end-column="13" />
         </state>
       </provider>
     </entry>

@@ -154,27 +154,23 @@ const getTrackId = async (url, order) => {
 };
 
 StackAndPack = (order) => {
-    let lenght = order.length;
     let newItems = [{}];
-
+    let url = "https://helloacm.com/api/random/?n=15";
     order.forEach(function (element) {
         let nbArticle = element.length;
-        let url = "https://helloacm.com/api/random/?n=15";
         /* Si un seul article dans la commande, on fait directement le colis */
+        /* TODO */
+        /*FINISH HIM!*/
         if (nbArticle === 1) {
             console.log('un seul article dans la commande');
-            console.log('paquetage du colis');
-            console.log(JSON.stringify(element));
             let packed = getTrackId(url, element);
-            console.log(packed);
             if (packed) {
+                console.log(packed);
                 console.log('colis packed');
-            }
-            if (nbParcel === 15) {
-                MakePalette(palette);
             }
         }
         /* Si plusieurs Articles dans la commandes, on additionne pour remplir le maximum du poids autorisé (30 Kilos)*/
+        /* TODO */
         if (nbArticle > 1) {
             console.log(nbArticle + ' articles sont dans la commande');
             element.forEach(function (value, key) {
@@ -193,6 +189,8 @@ StackAndPack = (order) => {
     return palette;
 };
 
+/* TODO */
+/*FINISH HIM!*/
 MakeParcel = (order, track_id) => {
     let weight = order[0][0].weight;
     if(nbParcel === parcel_max){
@@ -213,6 +211,7 @@ MakeParcel = (order, track_id) => {
         });
         nbParcel++;
         palette.push(parcel);
+        Remuneration(parcel.weight);
         console.log(palette);
         console.log(parcel);
         console.log('**********');
@@ -222,6 +221,8 @@ MakeParcel = (order, track_id) => {
     }
 };
 
+/* TODO */
+/*FINISH HIM!*/
 Remuneration = (poids) => {
     console.log(poids);
 };
