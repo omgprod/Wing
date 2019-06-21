@@ -22,9 +22,10 @@ app.enable('trust proxy');
 /* Server Main */
 app.get('/', (req, res) => {
     let parcel = parcelController.parcelTreatment(fileToTreat);
+    console.log('parcel ' + parcel);
     res.status(200).render('index', {
         parcel: parcel,
-        user: "Babito"
+        user: "Admin_Wing"
     });
 });
 
