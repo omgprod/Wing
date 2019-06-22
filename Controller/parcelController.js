@@ -8,7 +8,7 @@ var palette = [];
 
 module.exports = {
     parcelTreatment: (treat) => {
-        palette = [];
+        //palette = [];
         let itemsList = treat.items;
         let orders = treat.orders;
         let ordersToPack = [];
@@ -19,6 +19,7 @@ module.exports = {
                 num++;
             });
             let packed = StackAndPack(ordersToPack);
+            console.log(packed);
             return packed;
         } else {
             throw new Error('Error: Pas de commandes a traiter. En savoir plus: ' + treat);
@@ -141,6 +142,7 @@ DivideWeight = (itemOrder, itemsList, id) => {
     }
 };
 
+/*   */
 const getTrackId = async (url, order) => {
     try {
         const response = await axios.get(url);
@@ -166,15 +168,16 @@ StackAndPack = (order) => {
             let packed = getTrackId(url, element);
             if (packed) {
                 console.log(packed);
-                console.log('colis packed');
+                //console.log('colis packed');
             }
         }
         /* Si plusieurs Articles dans la commandes, on additionne pour remplir le maximum du poids autorisé (30 Kilos)*/
         /* TODO */
         if (nbArticle > 1) {
             console.log(nbArticle + ' articles sont dans la commande');
+            let reach = 0;
             element.forEach(function (value, key) {
-                console.log(key + value);
+                //console.log(key + value);
 
             });
             let parcelToPack = new Object({
@@ -196,7 +199,7 @@ MakeParcel = (order, track_id) => {
     if(nbParcel === parcel_max){
         nbPalette++;
         nbParcel = 0;
-        //console.log("nombre de colis = " + nbParcel + ', la nouvelle pallette est la numéro ' + nbPalette);
+        console.log("nombre de colis = " + nbParcel + ', la nouvelle pallette est la numéro ' + nbPalette);
     }
     if (weight <= 30) {
         let parcel = new Object({
@@ -210,12 +213,13 @@ MakeParcel = (order, track_id) => {
             palette_number: nbPalette,
         });
         nbParcel++;
-        palette.push(parcel);
         Remuneration(parcel.weight);
-        console.log(palette);
+        palette.push(parcel);
+        //console.log(palette);
+/*      console.log(palette);
         console.log(parcel);
-        console.log('**********');
-        return parcel;
+        console.log('**********');*/
+        return palette;
     } else {
         throw new Error("Pikachu is not dead yet");
     }
@@ -224,5 +228,5 @@ MakeParcel = (order, track_id) => {
 /* TODO */
 /*FINISH HIM!*/
 Remuneration = (poids) => {
-    console.log(poids);
+    //console.log(poids);
 };
